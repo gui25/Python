@@ -2,7 +2,7 @@ import sqlite3
 
 conn = sqlite3.connect('personagem.db')
 
-conn.execute('create table IF NOT EXISTS Aluno(id integer primary key autoincrement, nome text, xp integer, damage integer, life integer,classe char)')
+conn.execute('create table IF NOT EXISTS Status(id integer primary key autoincrement, nome text, xp integer, damage integer, life integer,classe char)')
 
 option = 0
 while option >= 0:
@@ -18,17 +18,15 @@ while option >= 0:
         damage = 15
         life = 30
         classe = input('\nDigite:\nM para ser um mago\nG para um Guerreiro\nL para ser um ladrão ')
-        conn.execute('insert into Aluno (nome,xp,damage,life,classe) values (?,?,?,?,?)',(name,xp,15,30,classe))
+        conn.execute('insert into Status (nome,xp,damage,life,classe) values (?,?,?,?,?)',(name,xp,damage,life,classe))
         conn.commit()
         
     if option == 2:
 
-        for row in conn.execute('select * from Aluno where id = 1'):
+        for row in conn.execute('select * from Status'):
             ID,nome,xp,damage,life,classe = row
-            print(ID)
-            
-        # for row in conn.execute('select * from Aluno order by id'):
-        #     print('Nome: ',row)
+            print("O ID é:", ID, "O nome é:", nome, " O dano é: ", damage, "A vida é: ", life, "A classe é ", classe)
+
 
 
 
