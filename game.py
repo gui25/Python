@@ -23,10 +23,10 @@ while option >= 0:
         conn.commit()
         
     if option == 2:
-        dados = []
+
         for row in conn.execute('select * from Aluno where id = 1'):
-            print(row)
-            
+            ID,nome,xp,damage,life,classe = row
+            print(ID)
             
         # for row in conn.execute('select * from Aluno order by id'):
         #     print('Nome: ',row)
