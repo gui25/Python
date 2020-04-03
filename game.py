@@ -1,9 +1,8 @@
-import json
 import sqlite3
 
 conn = sqlite3.connect('personagem.db')
 
-#conn.execute('create table IF NOT EXISTS Aluno(id integer primary key autoincrement, nome text, xp integer, damage integer, life integer,classe char)')
+conn.execute('create table IF NOT EXISTS Aluno(id integer primary key autoincrement, nome text, xp integer, damage integer, life integer,classe char)')
 
 option = 0
 while option >= 0:
