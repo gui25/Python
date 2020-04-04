@@ -4,6 +4,7 @@ conn = sqlite3.connect('game.db')
 
 conn.execute('create table IF NOT EXISTS Personagem(id integer primary key autoincrement, nome text, xp integer, damage integer, life integer,classe text)')
 
+print('\nBem vindo ao RPG\n')
 option = 0
 while option >= 0:
     option = int(input('\nEscolha a opção:\n0 para sair\n1 para criar um personagem\n2 para escolher um personagem criado\n3 para excluir um personagem'))
@@ -14,7 +15,7 @@ while option >= 0:
 
     if option == 1:
         flag=0
-        name = input('\nDigite o seu nome:')
+        nome = input('\nDigite o seu nome:')
         xp = 10
         
         while flag != 5:
@@ -23,7 +24,7 @@ while option >= 0:
                 classe = 'Mago'
                 life = 15
                 damage = 25
-                print('\nPersonagem criado com sucesso!')
+                print('\nO ',classe,' chamado ',nome,' criado com sucesso!')
                 flag = 5
             elif classe == 'g' or classe == 'G':
                 classe = 'Guerreiro'
@@ -39,7 +40,7 @@ while option >= 0:
                 flag = 5
             else:
                 print('\nOpção invalida, Digite novamente.')
-        conn.execute('insert into Personagem (nome,xp,damage,life,classe) values (?,?,?,?,?)',(name,xp,damage,life,classe))
+        conn.execute('insert into Personagem (nome,xp,damage,life,classe) values (?,?,?,?,?)',(nome,xp,damage,life,classe))
         conn.commit()
         
     if option == 2:
