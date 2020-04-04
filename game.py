@@ -7,7 +7,7 @@ conn.execute('create table IF NOT EXISTS Personagem(id integer primary key autoi
 print('\nBem vindo ao RPG\n')
 option = 0
 while option >= 0:
-    option = int(input('\nEscolha a opção:\n0 para sair\n1 para criar um personagem\n2 para escolher um personagem criado\n3 para excluir um personagem'))
+    option = int(input('\nEscolha a opção:\n0 para sair\n1 para criar um personagem\n2 para escolher um personagem criado\n3 para excluir um personagem\n'))
     
     if option == 0:
         option = -1
@@ -44,19 +44,32 @@ while option >= 0:
         conn.commit()
         
     if option == 2:
-
+        print("\n")
         for row in conn.execute('select * from Personagem'):
             ID,nome,xp,damage,life,classe = row
             print("| O ID é:", ID, " | O NOME é:", nome, " | O DANO é: ", damage, " | A VIDA é: ", life, " | A CLASSE é ", classe," | ")
     if option == 3:
+        print("\n")
         for row in conn.execute('select * from Personagem'):
             ID,nome,xp,damage,life,classe = row
             print("| O ID é:", ID, " | O NOME é:", nome, " | O DANO é: ", damage, " | A VIDA é: ", life, " | A CLASSE é ", classe," | ")
 
-        IdExluir = int(input('Digite o ID do personagem que deseja excluir: '))
-        conn.execute('delete from Personagem where ID = ?',(IdExluir,))
-        conn.commit()
-        print('\nPersonagem excluido com sucesso!')
+        IdExluir = int(input('\nDigite o ID do personagem que deseja excluir: '))
+        confirm = 0
+        for row in conn.execute('select * from Personagem'):
+            ID,nome,xp,damage,life,classe = row
+            if(ID==IdExluir):
+                print('\nPersonagem excluido com sucesso!')
+                confirm = 5
+                conn.execute('delete from Personagem where ID = ?',(IdExluir,))
+                conn.commit()
+        if(confirm != 5):
+            print('\nID não encontrado.')
+
+
+            
+    
+        
 
 
 
