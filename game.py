@@ -36,7 +36,7 @@ while option >= 0:
 
         for row in conn.execute('select * from Status'):
             ID,nome,xp,damage,life,classe = row
-            print("O ID é:", ID, "O nome é:", nome, " O dano é: ", damage, "A vida é: ", life, "A classe é ", classe)
+            print("| O ID é:", ID, " | O NOME é:", nome, " | O DANO é: ", damage, " | A VIDA é: ", life, " | A CLASSE é ", classe," | ")
 
 
 
