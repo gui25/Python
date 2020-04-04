@@ -1,5 +1,5 @@
 import sqlite3
-import randint
+from random import randint
 
 conn = sqlite3.connect('game.db')
 
