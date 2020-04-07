@@ -70,7 +70,7 @@ while option >= 0:
                     escolha = -1
                     print('\nsaindo...')
                 
-                if escolha == 1:
+                elif escolha == 1:
                     for row in conn.execute('select * from Personagem where ID = ?',(selec)):
                         ID,nome,xp,gold,damage,life,classe = row
                         print('| ID:', ID, ' | NOME:', nome, ' | DANO: ', damage, ' | QUANTIDADE DE OURO: ', gold, ' | VIDA: ', life,' | Quantidade de XP: ', xp,' | CLASSE: ', classe,' | ')
@@ -143,7 +143,8 @@ while option >= 0:
                         print('Nona possibilidade!')
                     if rand == 10:
                         print('Décima possibilidade!')
-                else
+                else:
+                    print('\nopção invalida.')
     if option == 3:
         print("\n")
         for row in conn.execute('select * from Personagem'):
