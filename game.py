@@ -23,20 +23,20 @@ while option >= 0:
             classe = input('\nDigite:\nM para ser um mago\nG para um Guerreiro\nL para ser um ladrão ')
             if classe == 'm' or classe == 'M':
                 classe = 'Mago'
-                life = 15
-                damage = 25
+                life = 45
+                damage = 35
                 print('\nO ',classe,' chamado ',nome,' criado com sucesso!')
                 flag = 5
             elif classe == 'g' or classe == 'G':
                 classe = 'Guerreiro'
-                life = 28
-                damage = 15
+                life = 60
+                damage = 25
                 print('\nPersonagem criado com sucesso!')
                 flag = 5
             elif classe == 'L' or classe == 'l':
                 classe = 'Ladrão'
-                life = 15
-                damage = 17
+                life = 40
+                damage = 20
                 print('\nPersonagem criado com sucesso!')
                 flag = 5
             else:
@@ -64,15 +64,18 @@ while option >= 0:
                 atualdamage = damage
                 atualgold = gold
 
-                escolha = int(input('\nO que você deseja fazer:\n0 - ir para o menu\n1 - Explorar caverna\n'))
+                escolha = int(input('\nO que você deseja fazer:\n0 - ir para o menu\n1 - Status do personagem\n2 - Explorar caverna\n'))
 
                 if escolha == 0:
                     escolha = -1
                     print('\nsaindo...')
-
+                
                 if escolha == 1:
-                    #rand = randint(0,9) quando tiver 9 possibilidades eu ativo
-                    rand = 1
+                    for row in conn.execute('select * from Personagem where ID = ?',(selec)):
+                        ID,nome,xp,gold,damage,life,classe = row
+                        print('| ID:', ID, ' | NOME:', nome, ' | DANO: ', damage, ' | QUANTIDADE DE OURO: ', gold, ' | VIDA: ', life,' | Quantidade de XP: ', xp,' | CLASSE: ', classe,' | ')
+                if escolha == 2:
+                    rand = randint(1,10)
 
                     if rand == 1:
 
@@ -100,21 +103,46 @@ while option >= 0:
                                         print('\n Você fugiu com sucesso!')
                                 elif option == 2:
                                     print('\nSeu turno:')
-                                    damagegiven = randint(0,atualdamage)
+                                    damagegiven = randint(int(atualdamage/2),atualdamage)
+                                    enemylife = enemylife - damagegiven
                                     print('\nVocê deu ',damagegiven,' de dano')
                                     print('\nSeu inimigo está com ',enemylife,' de vida')
                                 else:
                                     print('\nVocê ficou sem reação, não ira lutar dessa vez.')
                         else:
                             if enemylife <= 0:
-                                    winxp = randint(30,60)
-                                    print('Você ganhou ',winxp,'xp.\nParabéns!')
+                                    atualxp = randint(30,60)
+                                    wingold = randint(10,36)
+                                    atualgold = wingold + atualgold
+                                    print('Você ganhou ',atualxp,'xp e ',wingold,' de ouro.\nParabéns!')
+                                    conn.execute('update Personagem set xp = ? ,gold = ?',(atualxp + xp,atualgold))
+                                    conn.commit()
+
                             if atuallife <= 0:
                                     lostgold = randint(0,atualgold)
                                     atualgold = atualgold - lostgold
                                     print('Um curandeiro encontrou seu corpo e o trouxe de volta.')
                                     print('Porém quando morto você perdeu ',lostgold,' de ouro')
-
+                                    conn.execute('update Personagem set gold = ?',(atualgold + gold))
+                                    conn.commit()
+                    if rand == 2:
+                        print('Segunda possibilidade!')
+                    if rand == 3:
+                        print('Terceira possibilidade!')
+                    if rand == 4:
+                        print('Quarta possibilidade!')
+                    if rand == 5:
+                        print('Quinta possibilidade!')
+                    if rand == 6:
+                        print('Sexta possibilidade!')
+                    if rand == 7:
+                        print('Sétima possibilidade!')
+                    if rand == 8:
+                        print('Oitava possibilidade!')
+                    if rand == 9:
+                        print('Nona possibilidade!')
+                    if rand == 10:
+                        print('Décima possibilidade!')
     if option == 3:
         print("\n")
         for row in conn.execute('select * from Personagem'):
