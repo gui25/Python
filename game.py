@@ -74,7 +74,7 @@ while option >= 0:
                     for row in conn.execute('select * from Personagem where ID = ?',(selec)):
                         ID,nome,xp,gold,damage,life,classe = row
                         print('| ID:', ID, ' | NOME:', nome, ' | DANO: ', damage, ' | QUANTIDADE DE OURO: ', gold, ' | VIDA: ', life,' | Quantidade de XP: ', xp,' | CLASSE: ', classe,' | ')
-                if escolha == 2:
+                elif escolha == 2:
                     rand = randint(1,10)
 
                     if rand == 1:
@@ -143,6 +143,7 @@ while option >= 0:
                         print('Nona possibilidade!')
                     if rand == 10:
                         print('Décima possibilidade!')
+                else
     if option == 3:
         print("\n")
         for row in conn.execute('select * from Personagem'):
