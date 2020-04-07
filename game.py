@@ -68,7 +68,7 @@ while option >= 0:
 
                 if escolha == 0:
                     escolha = -1
-                    print('\nsaindo...')
+                    print('\nMENU')
                 
                 elif escolha == 1:
                     for row in conn.execute('select * from Personagem where ID = ?',(selec)):
