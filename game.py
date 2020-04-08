@@ -8,7 +8,7 @@ option = 0
 while option >= 0:
     print(""" Bem vindo ao nosso maravilhoso game!!!\n Neste jogo de RPG no seu terminal você irá\n Primeiramente criar seu personagem, por enquanto há poucas opções de char\n Mas logo logo com nossas atualizações você irá vivenciar um jogo incrivel!!\n E sim, um jogo de terminal(cmd)\n Bom Jogo!!""")
     option = int(input('\nEscolha a opção:\n0 para sair\n1 para criar um personagem\n2 para escolher um personagem criado\n'))
-    
+
     if option == 0:
         option = -1
         print('saindo...')
@@ -21,7 +21,7 @@ while option >= 0:
         classe = input('\nDigite:\nM para ser um mago\nG para um Guerreiro\nL para ser um ladrão')
         conn.execute('insert into Status (nome,xp,damage,life,classe) values (?,?,?,?,?)',(name,xp,damage,life,classe))
         conn.commit()
-        
+
     if option == 2:
 
         for row in conn.execute('select * from Status'):
